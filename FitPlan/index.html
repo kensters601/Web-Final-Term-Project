@@ -3,51 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FitPlan - Weekly Workout Planner</title>
+  <title>FitPlan | Weekly Workout Planner</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
 
-  <header>
-    <h1>FitPlan</h1>
-    <p>Weekly Workout Planner</p>
+  <header class="site-header">
+    <div class="header-content">
+      <h1>FitPlan</h1>
+      <p>Your weekly workout planner</p>
+    </div>
   </header>
 
-  <main>
+  <main class="main-content">
 
-    <section class="controls">
-      <label for="search">Search Exercises</label>
-      <input type="search" id="search"
-             placeholder="Search exercises...">
-
-      <button type="button" id="addBtn">
-        + Add Exercise
-      </button>
+    <section class="intro">
+      <h2>My Weekly Schedule</h2>
+      <p>Plan your workouts, track your exercises, and stay consistent.</p>
     </section>
 
-    <section class="schedule">
-      <h2>My Weekly Schedule</h2>
+    <section class="controls" aria-label="Workout controls">
+      <div class="control-group">
+        <label for="dayFilter">Choose a day</label>
+        <select id="dayFilter">
+          <option value="all">All days</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+        </select>
+      </div>
 
+      <div class="control-group">
+        <label for="search">Search exercises</label>
+        <input
+          type="search"
+          id="search"
+          placeholder="e.g. Bench Press"
+        >
+      </div>
+    </section>
+
+    <section class="schedule" aria-label="Weekly workout schedule">
       <div class="workout-grid" id="workoutGrid">
 
         <article class="day-card">
           <h3>Monday</h3>
-          <p>Push Day</p>
-
-          <ul>
-            <li>Bench Press</li>
-            <li>Shoulder Press</li>
+          <p class="day-focus">Push</p>
+          <ul class="exercise-list">
+            <li>Bench Press — 3 × 10</li>
+            <li>Shoulder Press — 3 × 12</li>
           </ul>
         </article>
 
         <article class="day-card">
           <h3>Tuesday</h3>
-          <p>Pull Day</p>
+          <p class="day-focus">Pull</p>
+          <ul class="exercise-list">
+            <li>Lat Pulldown — 3 × 10</li>
+            <li>Bicep Curl — 3 × 12</li>
+          </ul>
+        </article>
 
-          <ul>
-            <li>Lat Pulldown</li>
-            <li>Bicep Curl</li>
+        <article class="day-card">
+          <h3>Wednesday</h3>
+          <p class="day-focus">Legs</p>
+          <ul class="exercise-list">
+            <li>Squat — 3 × 8</li>
+            <li>Calf Raise — 3 × 15</li>
+          </ul>
+        </article>
+
+        <article class="day-card">
+          <h3>Thursday</h3>
+          <p class="day-focus">Upper Body</p>
+          <ul class="exercise-list">
+            <li>Incline Dumbbell Press — 3 × 10</li>
+            <li>Dumbbell Row — 3 × 10</li>
+          </ul>
+        </article>
+
+        <article class="day-card">
+          <h3>Friday</h3>
+          <p class="day-focus">Lower Body</p>
+          <ul class="exercise-list">
+            <li>Romanian Deadlift — 3 × 10</li>
+            <li>Bulgarian Split Squat — 3 × 8</li>
+          </ul>
+        </article>
+
+        <article class="day-card">
+          <h3>Saturday</h3>
+          <p class="day-focus">Cardio</p>
+          <ul class="exercise-list">
+            <li>Easy Run — 20 minutes</li>
+            <li>Plank — 3 sets</li>
+          </ul>
+        </article>
+
+        <article class="day-card">
+          <h3>Sunday</h3>
+          <p class="day-focus">Recovery</p>
+          <ul class="exercise-list">
+            <li>Rest Day</li>
+            <li>Light Stretching</li>
           </ul>
         </article>
 
@@ -56,8 +119,8 @@
 
   </main>
 
-  <footer>
-    <p>FitPlan - Web UI Term Project</p>
+  <footer class="site-footer">
+    <p>FitPlan — Build consistency, one workout at a time.</p>
   </footer>
 
 </body>
