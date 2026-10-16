@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitPlan - Weekly Workout Planner</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <header>
+    <h1>FitPlan</h1>
+    <p>Weekly Workout Planner</p>
+  </header>
+
+  <main>
+
+    <section class="controls">
+      <label for="search">Search Exercises</label>
+      <input type="search" id="search"
+             placeholder="Search exercises...">
+
+      <button type="button" id="addBtn">
+        + Add Exercise
+      </button>
+    </section>
+
+    <section class="schedule">
+      <h2>My Weekly Schedule</h2>
+
+      <div class="workout-grid" id="workoutGrid">
+
+        <article class="day-card">
+          <h3>Monday</h3>
+          <p>Push Day</p>
+
+          <ul>
+            <li>Bench Press</li>
+            <li>Shoulder Press</li>
+          </ul>
+        </article>
+
+        <article class="day-card">
+          <h3>Tuesday</h3>
+          <p>Pull Day</p>
+
+          <ul>
+            <li>Lat Pulldown</li>
+            <li>Bicep Curl</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>FitPlan - Web UI Term Project</p>
+  </footer>
+
+</body>
+</html>
