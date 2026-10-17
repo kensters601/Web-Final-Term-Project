@@ -1,127 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FitPlan | Weekly Workout Planner</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
-</head>
-<body>
-
-  <header class="site-header">
-    <div class="header-content">
-      <h1>FitPlan</h1>
-      <p>Your weekly workout planner</p>
-    </div>
-  </header>
-
-  <main class="main-content">
-
-    <section class="intro">
-      <h2>My Weekly Schedule</h2>
-      <p>Plan your workouts, track your exercises, and stay consistent.</p>
-    </section>
-
-    <section class="controls" aria-label="Workout controls">
-      <div class="control-group">
-        <label for="dayFilter">Choose a day</label>
-        <select id="dayFilter">
-          <option value="all">All days</option>
-          <option value="Monday">Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-          <option value="Saturday">Saturday</option>
-          <option value="Sunday">Sunday</option>
-        </select>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitPlan | Weekly Workout Planner</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-content">
+        <h1>FitPlan</h1>
+        <p>Your weekly workout planner</p>
       </div>
+    </header>
 
-      <div class="control-group">
-        <label for="search">Search exercises</label>
-        <input
-          type="search"
-          id="search"
-          placeholder="e.g. Bench Press"
-        >
+    <main class="main-content">
+      <section class="intro">
+        <h2>My Weekly Schedule</h2>
+        <p>Plan your workouts, track your exercises, and stay consistent.</p>
+      </section>
+
+      <section class="controls" aria-label="Workout controls">
+        <div class="control-group">
+          <label for="dayFilter">Choose a day</label>
+          <select id="dayFilter">
+            <option value="all">All days</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="search">Search exercises</label>
+          <input type="search" id="search" placeholder="e.g. Bench Press" />
+        </div>
+      </section>
+
+      <section class="add-workout">
+        <h2>Add an Exercise</h2>
+        <p>Enter your exercise details to add it to your weekly plan.</p>
+
+        <form id="exerciseForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="exerciseName">Exercise name</label>
+              <input
+                type="text"
+                id="exerciseName"
+                placeholder="e.g. Dumbbell Row"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="exerciseDay">Workout day</label>
+              <select id="exerciseDay" required>
+                <option value="">Choose a day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="exerciseCategory">Category</label>
+              <select id="exerciseCategory" required>
+                <option value="">Choose a category</option>
+                <option value="Push">Push</option>
+                <option value="Pull">Pull</option>
+                <option value="Legs">Legs</option>
+                <option value="Upper Body">Upper Body</option>
+                <option value="Lower Body">Lower Body</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Core">Core</option>
+                <option value="Recovery">Recovery</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="exerciseSets">Sets</label>
+              <input
+                type="number"
+                id="exerciseSets"
+                min="1"
+                max="20"
+                value="3"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="exerciseReps">Reps or duration in minutes</label>
+              <input
+                type="number"
+                id="exerciseReps"
+                min="1"
+                max="300"
+                value="10"
+                required
+              />
+            </div>
+          </div>
+
+          <p id="formMessage" class="form-message" aria-live="polite"></p>
+
+          <button type="submit" class="primary-button">Add Exercise</button>
+        </form>
+      </section>
+
+      <section class="schedule" aria-label="Weekly workout schedule">
+        <div class="workout-grid" id="workoutGrid">
+          <!-- JavaScript will generate the workout cards here -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>FitPlan — Build consistency, one workout at a time.</p>
+    </footer>
+
+    <dialog id="exerciseDialog" class="exercise-dialog">
+      <div class="dialog-content">
+        <h2 id="dialogTitle">Exercise details</h2>
+        <p id="dialogDetails"></p>
+        <button type="button" id="closeDialog" class="primary-button">
+          Close
+        </button>
       </div>
-    </section>
-
-    <section class="schedule" aria-label="Weekly workout schedule">
-      <div class="workout-grid" id="workoutGrid">
-
-        <article class="day-card">
-          <h3>Monday</h3>
-          <p class="day-focus">Push</p>
-          <ul class="exercise-list">
-            <li>Bench Press — 3 × 10</li>
-            <li>Shoulder Press — 3 × 12</li>
-          </ul>
-        </article>
-
-        <article class="day-card">
-          <h3>Tuesday</h3>
-          <p class="day-focus">Pull</p>
-          <ul class="exercise-list">
-            <li>Lat Pulldown — 3 × 10</li>
-            <li>Bicep Curl — 3 × 12</li>
-          </ul>
-        </article>
-
-        <article class="day-card">
-          <h3>Wednesday</h3>
-          <p class="day-focus">Legs</p>
-          <ul class="exercise-list">
-            <li>Squat — 3 × 8</li>
-            <li>Calf Raise — 3 × 15</li>
-          </ul>
-        </article>
-
-        <article class="day-card">
-          <h3>Thursday</h3>
-          <p class="day-focus">Upper Body</p>
-          <ul class="exercise-list">
-            <li>Incline Dumbbell Press — 3 × 10</li>
-            <li>Dumbbell Row — 3 × 10</li>
-          </ul>
-        </article>
-
-        <article class="day-card">
-          <h3>Friday</h3>
-          <p class="day-focus">Lower Body</p>
-          <ul class="exercise-list">
-            <li>Romanian Deadlift — 3 × 10</li>
-            <li>Bulgarian Split Squat — 3 × 8</li>
-          </ul>
-        </article>
-
-        <article class="day-card">
-          <h3>Saturday</h3>
-          <p class="day-focus">Cardio</p>
-          <ul class="exercise-list">
-            <li>Easy Run — 20 minutes</li>
-            <li>Plank — 3 sets</li>
-          </ul>
-        </article>
-
-        <article class="day-card">
-          <h3>Sunday</h3>
-          <p class="day-focus">Recovery</p>
-          <ul class="exercise-list">
-            <li>Rest Day</li>
-            <li>Light Stretching</li>
-          </ul>
-        </article>
-
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <p>FitPlan — Build consistency, one workout at a time.</p>
-  </footer>
-
-</body>
+    </dialog>
+  </body>
 </html>
