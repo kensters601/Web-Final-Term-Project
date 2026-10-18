@@ -180,13 +180,18 @@ function render() {
       exerciseName.textContent = exercise.name;
 
       const details = document.createElement("p");
-      details.textContent =
-        exercise.category +
-        " · " +
-        exercise.sets +
-        " sets × " +
-        exercise.reps +
-        " reps";
+
+      if (exercise.category === "Cardio") {
+        details.textContent = exercise.reps + " minutes";
+      } else if (exercise.category === "Core") {
+        details.textContent =
+          exercise.sets + " sets × " + exercise.reps + " minute";
+      } else if (exercise.category === "Recovery") {
+        details.textContent = "";
+      } else {
+        details.textContent =
+          exercise.sets + " sets × " + exercise.reps + " reps";
+      }
 
       const buttonGroup = document.createElement("div");
       buttonGroup.classList.add("exercise-buttons");
@@ -252,22 +257,22 @@ workoutGrid.addEventListener("click", function (event) {
   if (action === "details") {
     dialogTitle.textContent = exercise.name;
 
-    dialogDetails.textContent =
-      "Day: " +
-      exercise.day +
-      "\n" +
-      "Category: " +
-      exercise.category +
-      "\n" +
-      "Sets: " +
-      exercise.sets +
-      "\n" +
-      "Reps: " +
-      exercise.reps +
-      "\n" +
-      "Status: " +
-      (exercise.completed ? "Completed" : "Not completed");
+    let workoutDetails =
+      "Day: " + exercise.day + "\n" + "Category: " + exercise.category + "\n";
 
+    if (exercise.category === "Cardio") {
+      workoutDetails += exercise.reps + " minutes\n";
+    } else if (exercise.category === "Core") {
+      workoutDetails +=
+        exercise.sets + " sets × " + exercise.reps + " minute\n";
+    } else if (exercise.category !== "Recovery") {
+      workoutDetails += exercise.sets + " sets × " + exercise.reps + " reps\n";
+    }
+
+    workoutDetails +=
+      "Status: " + (exercise.completed ? "Completed" : "Not completed");
+
+    dialogDetails.textContent = workoutDetails;
     dialogDetails.style.whiteSpace = "pre-line";
 
     exerciseDialog.showModal();
