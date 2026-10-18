@@ -7,8 +7,8 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f4f6f8;
-  color: #202b38;
+  background-color: #f0f4f1;
+  color: #24352e;
   line-height: 1.6;
 }
 
@@ -30,7 +30,8 @@ select {
 .site-header {
   background-color: #173b35;
   color: white;
-  padding: 24px 20px;
+  padding: 32px 20px;
+  border-bottom: 4px solid #80b59b;
 }
 
 .header-content {
@@ -123,11 +124,11 @@ select {
 
 .day-card {
   min-width: 0;
-  padding: 22px;
+  padding: 24px;
   background-color: white;
-  border: 1px solid #dce2e7;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(20, 40, 35, 0.05);
+  border: 1px solid #d7e3da;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(23, 59, 53, 0.06);
 }
 
 .day-card h3 {
@@ -188,8 +189,8 @@ select {
 /* ---------- Generated exercise items ---------- */
 
 .exercise-item {
-  padding: 12px 0;
-  border-top: 1px solid #e5e9ed;
+  padding: 14px 0;
+  border-top: 1px solid #e3ebe5;
 }
 
 .exercise-item h4 {
@@ -207,10 +208,11 @@ select {
 
 .add-workout {
   margin-bottom: 32px;
-  padding: 24px;
+  padding: 26px;
   background-color: white;
-  border: 1px solid #dce2e7;
-  border-radius: 12px;
+  border: 1px solid #d7e3da;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(23, 59, 53, 0.05);
 }
 
 .add-workout h2 {
@@ -262,6 +264,7 @@ select {
   color: white;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .primary-button:hover {
@@ -307,12 +310,12 @@ select {
 }
 
 .complete-button {
-  background-color: #dcefe5;
+  background-color: #e0f1e7;
   color: #205c43;
 }
 
 .delete-button {
-  background-color: #fce8e6;
+  background-color: #fbe9e7;
   color: #a52822;
 }
 
