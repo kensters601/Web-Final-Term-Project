@@ -285,6 +285,22 @@ select {
   color: #18794e;
 }
 
+.field-error {
+  min-height: 0;
+  margin: 0;
+  color: #b42318;
+  font-size: 0.85rem;
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.form-group input.invalid,
+.form-group select.invalid {
+  border: 1px solid #b42318;
+}
+
 /* Display two form columns on wider screens. */
 @media (min-width: 600px) {
   .form-grid {

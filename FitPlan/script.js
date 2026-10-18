@@ -322,51 +322,92 @@ exerciseForm.addEventListener("submit", function (event) {
   const sets = Number(exerciseSetsInput.value);
   const reps = Number(exerciseRepsInput.value);
 
-  // Clear the previous message.
+  // Clear previous field errors and highlighting.
+  const fields = [
+    exerciseNameInput,
+    exerciseDayInput,
+    exerciseCategoryInput,
+    exerciseSetsInput,
+    exerciseRepsInput,
+  ];
+
+  fields.forEach(function (field) {
+    field.classList.remove("invalid");
+    document.getElementById(field.id + "Error").textContent = "";
+  });
+
   formMessage.textContent = "";
   formMessage.className = "form-message";
 
-  // Validation rule 1: exercise name cannot be empty.
-  if (name === "") {
-    showFormMessage("Please enter an exercise name.", "error");
-    exerciseNameInput.focus();
-    return;
+  let hasError = false;
+
+  // Display an error beside the field that needs correcting.
+  function showFieldError(field, message) {
+    document.getElementById(field.id + "Error").textContent = message;
+    field.classList.add("invalid");
+    hasError = true;
   }
 
+  // Rule 1: Exercise name cannot be empty.
+  if (name === "") {
+    showFieldError(exerciseNameInput, "Please enter an exercise name.");
+  }
+
+  // Rule 2: The same exercise cannot be added twice on the same day.
   const duplicateExists = exercises.some(function (exercise) {
     const existingName = exercise.name.toLowerCase().replace(/\s+/g, "");
-
     const newName = name.toLowerCase().replace(/\s+/g, "");
 
-    return existingName === newName && exercise.day === day;
+    return name !== "" && existingName === newName && exercise.day === day;
   });
 
   if (duplicateExists) {
-    showFormMessage("This exercise already exists on that day.", "error");
-    exerciseNameInput.focus();
-    return;
-  }
-
-  // Validation rule 2: day and category must be selected.
-  if (day === "" || category === "") {
-    showFormMessage("Please choose a day and category.", "error");
-    return;
-  }
-
-  // Validation rule 3: sets must be a whole number from 1 to 20.
-  if (!Number.isInteger(sets) || sets < 1 || sets > 20) {
-    showFormMessage("Sets must be a whole number from 1 to 20.", "error");
-    exerciseSetsInput.focus();
-    return;
-  }
-
-  // Validation rule 4: reps or duration must be a whole number from 1 to 300.
-  if (!Number.isInteger(reps) || reps < 1 || reps > 300) {
-    showFormMessage(
-      "Reps or duration must be a whole number from 1 to 300.",
-      "error",
+    showFieldError(
+      exerciseNameInput,
+      "This exercise already exists on that day.",
     );
-    exerciseRepsInput.focus();
+  }
+
+  // Rule 3: A workout day must be selected.
+  if (day === "") {
+    showFieldError(exerciseDayInput, "Please choose a workout day.");
+  }
+
+  // Rule 4: A category must be selected.
+  if (category === "") {
+    showFieldError(exerciseCategoryInput, "Please choose a category.");
+  }
+
+  // Rule 5: Sets must be a whole number from 1 to 20.
+  if (
+    exerciseSetsInput.value.trim() === "" ||
+    !Number.isInteger(sets) ||
+    sets < 1 ||
+    sets > 20
+  ) {
+    showFieldError(
+      exerciseSetsInput,
+      "Sets must be a whole number from 1 to 20.",
+    );
+  }
+
+  // Rule 6: Reps or minutes must be a whole number from 1 to 300.
+  if (
+    exerciseRepsInput.value.trim() === "" ||
+    !Number.isInteger(reps) ||
+    reps < 1 ||
+    reps > 300
+  ) {
+    showFieldError(
+      exerciseRepsInput,
+      "Reps / minutes must be a whole number from 1 to 300.",
+    );
+  }
+
+  // Stop if any field has an error.
+  if (hasError) {
+    showFormMessage("Please correct the highlighted fields.", "error");
+
     return;
   }
 
@@ -387,7 +428,7 @@ exerciseForm.addEventListener("submit", function (event) {
   // Redraw the schedule with the updated data.
   render();
 
-  // Reset the form to its initial state.
+  // Reset the form after successful submission.
   exerciseForm.reset();
 
   // Restore the default values for sets and reps.
