@@ -418,7 +418,7 @@ document.addEventListener("keydown", function (event) {
     return;
   }
 
-  // Don't interrupt someone who is typing in a form field.
+  // Don't interrupt someone who is typing in an input, dropdown, or editable element.
   const activeTag = document.activeElement.tagName;
 
   if (
@@ -430,9 +430,9 @@ document.addEventListener("keydown", function (event) {
     return;
   }
 
-  // Prevent "/" from being typed into the page.
+  // Prevent the default "/" typing behavior.
   event.preventDefault();
 
-  // Focus the search box.
-  document.getElementById("search").focus();
+  // Focus the Exercise Name input field in the "Add an Exercise" form.
+  document.getElementById("exerciseName").focus();
 });
